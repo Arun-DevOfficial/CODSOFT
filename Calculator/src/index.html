@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <title>Calculator</title>
+</head>
+<body class="bg-gray-200 flex justify-center items-center h-screen font-pac">
+  <div class="bg-white p-6 rounded-lg shadow-md w-80 h-96">
+    <h1 class="text-xl font-pac font-medium text-slate-400 text-center">Calcu<span class="text-yellow-400">lator</span>
+    </h1>
+   <div class="my-9">
+      <input id="output" class="w-full bg-gray-100 p-2 rounded text-right" disabled>
+    </div>
+    <div class="grid grid-cols-4 gap-2">
+      <button class="col-span-1 bg-gray-300 p-2 rounded hover:bg-gray-400" onclick="appendToOutput('7')">7</button>
+      <button class="col-span-1 bg-gray-300 p-2 rounded hover:bg-gray-400" onclick="appendToOutput('8')">8</button>
+      <button class="col-span-1 bg-gray-300 p-2 rounded hover:bg-gray-400" onclick="appendToOutput('9')">9</button>
+      <button class="col-span-1 bg-yellow-400 p-2 rounded hover:bg-yellow-500" onclick="operate('/')">/</button>
+      <button class="col-span-1 bg-gray-300 p-2 rounded hover:bg-gray-400" onclick="appendToOutput('4')">4</button>
+      <button class="col-span-1 bg-gray-300 p-2 rounded hover:bg-gray-400" onclick="appendToOutput('5')">5</button>
+      <button class="col-span-1 bg-gray-300 p-2 rounded hover:bg-gray-400" onclick="appendToOutput('6')">6</button>
+      <button class="col-span-1 bg-yellow-400 p-2 rounded hover:bg-yellow-500" onclick="operate('*')">*</button>
+      <button class="col-span-1 bg-gray-300 p-2 rounded hover:bg-gray-400" onclick="appendToOutput('1')">1</button>
+      <button class="col-span-1 bg-gray-300 p-2 rounded hover:bg-gray-400" onclick="appendToOutput('2')">2</button>
+      <button class="col-span-1 bg-gray-300 p-2 rounded hover:bg-gray-400" onclick="appendToOutput('3')">3</button>
+      <button class="col-span-1 bg-yellow-400 p-2 rounded hover:bg-yellow-500" onclick="operate('-')">-</button>
+      <button class="col-span-1 bg-gray-300 p-2 rounded hover:bg-gray-400" onclick="appendToOutput('0')">0</button>
+      <button class="col-span-1 bg-red-400 p-2 rounded hover:bg-red-500" onclick="clearOutput()">C</button>
+      <button class="col-span-1 bg-green-400 p-2 rounded hover:bg-green-500" onclick="calculate()">=</button>
+      <button class="col-span-1 bg-yellow-400 p-2 rounded hover:bg-yellow-500" onclick="operate('+')">+</button>
+    </div>
+  </div>
+
+  <script>
+    let output = document.getElementById('output');
+    let currentInput = '';
+
+    function appendToOutput(value) {
+      currentInput += value;
+      output.value = currentInput;
+    }
+
+    function operate(operator) {
+      currentInput += operator;
+      output.value = currentInput;
+    }
+
+    function clearOutput() {
+      currentInput = '';
+      output.value = '';
+    }
+
+    function calculate() {
+      try {
+        currentInput = eval(currentInput).toString();
+        output.value = currentInput;
+      } catch (error) {
+        output.value = 'Error';
+      }
+    }
+  </script>
+</body>
+</html>
